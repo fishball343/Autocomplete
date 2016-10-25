@@ -118,6 +118,15 @@ class TrieTest(unittest.TestCase):
 
 	#Test method find_subtrie
 
+	def testPuttingSameWordsInTrie(self):
+		"""Test if inserting 2 similar words of different weights replaces the nodes with the greater weight and child_weight"""
+		root = Trie()
+		root.insert(100, "donald", "donald")
+		root.insert(200, "donald", "donald")
+		subtrie = root.find_subtrie("donald")
+		self.assertEqual(subtrie.weight, 200)
+		self.assertEqual(subtrie.child_weight, 200)
+
 	def testSubtrieOnExisitingWord(self):
 		"""Test that if the instance word and weight of the subtree node 
 		exists, it is equal to the inserted word and weight to the original 
@@ -169,7 +178,7 @@ class TrieTest(unittest.TestCase):
 		root=Trie()
 		wordlist=[]
 		for _ in range(2500):
-			weight = random.randint(1, 360)
+			weight = random.randint(1, 500)
 			RandomWord = ''.join(random.choice(string.ascii_lowercase) for _ in range(random.randint(3, 10)))
 			wordlist.append((RandomWord, weight))
 			root.insert(weight, RandomWord, RandomWord)
@@ -191,7 +200,6 @@ class TrieTest(unittest.TestCase):
 			root.insert(weight, RandomWord, RandomWord)
 		self.assertTrue(all(len(word[0]) >= 2 for word in root.topk(10, "br")))
 		self.assertTrue(all(len(word[0]) >= 3 for word in root.topk(10, "amw")))
-
 
 	def testPrefixBeginsAllSuggestedWords(self):
 		"""Test that the suggested words begin with the prefix."""
