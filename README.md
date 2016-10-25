@@ -39,7 +39,7 @@ The fastest part of my code is finding the top k entries that start with the pre
 
 EXTRA NOTES:
 
-To run the unittest type **python ACunittest.py** into the command line. 
+To run the unittest type **python AutoCompleteUnitTest.py** into the command line. 
 
 To run the AutoComplete algorithm, type the first argument as the prefix string, the second argument as the file that displays the words and the third argument as the number of words you want the algorithm to suggest
 
