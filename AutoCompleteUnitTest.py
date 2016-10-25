@@ -1,7 +1,21 @@
 #!/usr/bin/python
 
 """
-The following unittest is for my my implementation of Autocomplete using a trie, a tree data structure that efficiently allows you to look up terms based on their prefixes. The Autocomplete algorithm  is the process of finding words in a dictionary that starts with a given prefix. The goal of Autocomplete is to make this process extremely fast, thus performing a trie traversal is necessary. For this project,  relevance of each word is based on the frequency of which it appears in the dictionary. The class Trie represents my implementation of the Trie data structure. Each node is given 4 instances, the children, the maximum weight of its children, and if the node is the end of a word, the word itself and the weight of that word. The function insert() takes input and adds it to the tree where each node consists of one character. The function find_subtrie() find the subtrie starting at the root node of the given prefix. Lastly topk() returns a list of weight and word values of the top k matches to the provided prefix sorted by weight. For my unittests, I used files pokemon.txt.
+The following unittest is for my my implementation of Autocomplete using a 
+trie, a tree data structure that efficiently allows you to look up terms based 
+on their prefixes. The Autocomplete algorithm  is the process of finding words 
+in a dictionary that starts with a given prefix. The goal of Autocomplete is 
+to make this process extremely fast, thus performing a trie traversal is 
+necessary. For this project,  relevance of each word is based on the frequency 
+of which it appears in the dictionary. The class Trie represents my 
+implementation of the Trie data structure. Each node is given 4 instances, 
+the children, the maximum weight of its children, and if the node is the end 
+of a word, the word itself and the weight of that word. The function insert() 
+takes input and adds it to the tree where each node consists of one character. 
+The function find_subtrie() find the subtrie starting at the root node of the 
+given prefix. Lastly topk() returns a list of weight and word values of the 
+top k matches to the provided prefix sorted by weight. For my unittests, I 
+used files pokemon.txt.
 """
 
 from AutoComplete import Trie, read
