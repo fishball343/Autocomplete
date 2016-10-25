@@ -119,7 +119,8 @@ class TrieTest(unittest.TestCase):
 	#Test method find_subtrie
 
 	def testPuttingSameWordsInTrie(self):
-		"""Test if inserting 2 similar words of different weights replaces the nodes with the greater weight and child_weight"""
+		"""Test if inserting 2 similar words of different weights replaces the 
+		nodes with the greater weight and child_weight"""
 		root = Trie()
 		root.insert(100, "donald", "donald")
 		root.insert(200, "donald", "donald")
@@ -192,7 +193,8 @@ class TrieTest(unittest.TestCase):
 		self.assertEqual(root.topk(5, "jon"), wordlist_prefix3)
 
 	def testPrefixIsShorterThanSuggestedWords(self):
-		"""Test on random input that autocomplete suggestions are longer than or of equal length of the prefix."""
+		"""Test on random input that autocomplete suggestions are longer than 
+		or of equal length of the prefix."""
 		root=Trie()
 		for _ in range(2500):
 			weight = random.randint(1, 250)
