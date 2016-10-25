@@ -43,7 +43,7 @@ To run the unittest type **python AutoCompleteUnitTest.py** into the command lin
 
 To run the AutoComplete algorithm, type the first argument as the prefix string, the second argument as the file that displays the words and the third argument as the number of words you want the algorithm to suggest
 
-eg. python **AutoComplete.py Ch pokemon.txt 5**
+eg. **python AutoComplete.py Ch pokemon.txt 5**
 
 If the prefix does not exist in the dictionary of words, my code should print "Prefix not found" on the console. 
 
