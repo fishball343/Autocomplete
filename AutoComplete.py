@@ -134,8 +134,8 @@ class Trie:
 				 	pq.put((-i.child_weight, i))
 				if top_node.word_name is not None:
 					visited.append((top_node.word_name, top_node.weight))
-					visited = sorted(visited, key = lambda x: x[1], reverse = True)
 					if sum(node >= top_weight for node in visited) >= k:
+						visited = sorted(visited, key = lambda x: x[1], reverse = True)
 						visited = visited[:k]
 						isVisited_K = True
 			return(visited)
