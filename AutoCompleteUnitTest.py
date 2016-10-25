@@ -1,15 +1,7 @@
 #!/usr/bin/python
 
 """
-The following unittest is for my my implementation of Autocomplete using a trie, a tree data structure that efficiently allows you to look up terms based on their prefixes. The Autocomplete algorithm  is the process of finding words in a dictionary that starts with a given prefix. The goal of Autocomplete is to make this process extremely fast, thus performing a trie traversal is necessary. For this project,  relevance of each word is based on the frequency 
-of which it appears in the dictionary. The class Trie represents my
-implementation of the Trie data structure. Each node is given 4 instances, the 
-children,  the maximum weight of its children, and if the node is the end of a 
-word, the word itself and the weight of that word. The function insert() takes 
-input and adds it to the tree where each node consists of one character. The 
-function find_subtrie() find the subtrie starting at the root node of the 
-given prefix. Lastly topk() returns a list of weight and word values of the 
-top k matches to the provided prefix sorted by weight. For my unittests, I used files pokemon.txt.
+The following unittest is for my my implementation of Autocomplete using a trie, a tree data structure that efficiently allows you to look up terms based on their prefixes. The Autocomplete algorithm  is the process of finding words in a dictionary that starts with a given prefix. The goal of Autocomplete is to make this process extremely fast, thus performing a trie traversal is necessary. For this project,  relevance of each word is based on the frequency of which it appears in the dictionary. The class Trie represents my implementation of the Trie data structure. Each node is given 4 instances, the children, the maximum weight of its children, and if the node is the end of a word, the word itself and the weight of that word. The function insert() takes input and adds it to the tree where each node consists of one character. The function find_subtrie() find the subtrie starting at the root node of the given prefix. Lastly topk() returns a list of weight and word values of the top k matches to the provided prefix sorted by weight. For my unittests, I used files pokemon.txt.
 """
 
 from AutoComplete import Trie, read
@@ -23,7 +15,8 @@ class TrieTest(unittest.TestCase):
 	#Test method topk
 
 	def testTrieMethodMatchesForPokemonText(self):
-		"""Test if Trie algorithm suggestions matches an iterative search for the pokemon.txt file."""
+		"""Test if Trie algorithm suggestions matches an iterative search for 
+		the pokemon.txt file."""
 		root = read("pokemon.txt")
 		search_Ch = root.topk(5, "Ch")
 		search_Du = root.topk(4, "Du")
@@ -51,7 +44,8 @@ class TrieTest(unittest.TestCase):
 		self.assertEqual(search_Bo, sorted(search_Bo, key = lambda x: x[1], reverse = True))
 
 	def testTopKLengthIsCorrect(self):
-		"""Test if topk() returns array of length k when there is enough words in dictionary."""
+		"""Test if topk() returns array of length k when there is enough words 
+		in dictionary."""
 		root = read("pokemon.txt")
 		search_Char = root.topk(3, "Char")
 		search_B = root.topk(6, "B")
@@ -59,7 +53,8 @@ class TrieTest(unittest.TestCase):
 		self.assertEqual(len(search_B), 6)
 
 	def testTopKLengthIsCorrectForLargeK(self):
-		"""Test if topk() returns list of length less than k when there is not enough words in dictionary."""
+		"""Test if topk() returns list of length less than k when there is not 
+		enough words in dictionary."""
 		root = read("pokemon.txt")
 		search_Char = root.topk(20, "Char")
 		search_B = root.topk(500, "B")
@@ -73,7 +68,9 @@ class TrieTest(unittest.TestCase):
 		self.assertEqual(search_Charmonger, [])
 
 	def testTopKSortsByWeightForNodesOnSameBranch(self):
-		"""Test that topk() returns the word of maximum weight first if 2 or more words are on the same branch, instead of the parent node which also has the same maximum child_weight but lesser weight."""
+		"""Test that topk() returns the word of maximum weight first if 2 or 
+		more words are on the same branch, instead of the parent node which 
+		also has the same maximum child_weight but lesser weight."""
 		root=Trie()
 		root.insert(5, "big", "big")
 		root.insert(10, "biggest", "biggest")
@@ -88,7 +85,8 @@ class TrieTest(unittest.TestCase):
 	#Test method insert
 
 	def testInsertFunctionsCorrectly(self):
-		"""Test if insert correctly adds children  to the root node, in which children of the same character belong in one node."""
+		"""Test if insert correctly adds children  to the root node, in which 
+		children of the same character belong in one node."""
 		root = Trie()
 		root.insert(5, "big", "big")
 		root.insert(4, "brag", "brag")
@@ -107,7 +105,9 @@ class TrieTest(unittest.TestCase):
 	#Test method find_subtrie
 
 	def testSubtrieOnExisitingWord(self):
-		"""Test that if the instance word and weight of the subtree node exists, it is equal to the inserted word and weight to the original trie."""
+		"""Test that if the instance word and weight of the subtree node 
+		exists, it is equal to the inserted word and weight to the original 
+		trie."""
 		root = Trie()
 		root.insert(20, "hillary", "hillary")
 		root.insert(10, "hill", "hill")
@@ -116,7 +116,8 @@ class TrieTest(unittest.TestCase):
 		self.assertEqual(subtrie.weight, 10)
 
 	def testSubtrieOnNonExistingWord(self):
-		"""Test that the instance word and weight on the subtree node is None and -inf if the prefix is not contained in the original trie."""
+		"""Test that the instance word and weight on the subtree node is None 
+		and -inf if the prefix is not contained in the original trie."""
 		root = Trie()
 		root.insert(20, "donald", "donald")
 		root.insert(10, "trump", "trump")
@@ -134,7 +135,8 @@ class TrieTest(unittest.TestCase):
 		self.assertIsNone(subtrie)
 
 	def testSubtrieHasCorrectChildren(self):
-		"""Test that the subtrie has the correct children given the following inputs."""
+		"""Test that the subtrie has the correct children given the following 
+		inputs."""
 		root = Trie()
 		root.insert(1, "apple", "apple")
 		root.insert(2, "apes", "apes")
@@ -145,7 +147,11 @@ class TrieTest(unittest.TestCase):
 	# Randomized Tests for correctness
 
 	def testTrieMethodMatchesForRandomInput(self):
-		"""Test if iterative approach of autocomplete matches my trie implementation using  a random list of weights and words. This shouldn't work on all unittest runs since some words may have the same weight and thus there is a chance that it may not make the top N suggestion due to sorting issues."""
+		"""Test if iterative approach of autocomplete matches my trie 
+		implementation using  a random list of weights and words. This 
+		shouldn't work on all unittest runs since some words may have the same
+		weight and thus there is a chance that it may not make the top N 
+		suggestion due to sorting issues."""
 		root=Trie()
 		wordlist=[]
 		for _ in range(2500):
