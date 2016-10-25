@@ -202,10 +202,5 @@ class TrieTest(unittest.TestCase):
 			root.insert(weight, RandomWord, RandomWord)
 		self.assertTrue(all(word[0].startswith("br") for word in root.topk(10, "br")))
 
-
-
-
-
-
 if __name__ == "__main__":
     unittest.main()

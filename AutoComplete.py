@@ -156,8 +156,8 @@ def read(filename):
 	     next(file)
 	     for line in file:
 	        if (line.rstrip('\n')):
-	             weight=int(line.split(None,1)[0])
-	             word=str(line.split(None,1)[1].strip())
+	             weight=int(line.split(None, 1)[0])
+	             word=str(line.split(None, 1)[1].strip())
 	             root.insert(weight, word, word)
 	        else:
 	            break
