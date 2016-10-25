@@ -93,7 +93,7 @@ class Trie:
 		# trie.
 		if (self.children.has_key(key)):
 			subtrie = self.children[key]
-			return(subtrie.find_subtrie(rest))
+			return subtrie.find_subtrie(rest)
 
 		else:
 			return
@@ -138,7 +138,7 @@ class Trie:
 						visited = sorted(visited, key = lambda x: x[1], reverse = True)
 						visited = visited[:k]
 						isVisited_K = True
-			return(visited)
+			return visited
 
 		# If the prefix is not found in the subtrie, return an empty visited 
 		# list.
