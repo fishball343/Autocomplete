@@ -728,8 +728,8 @@
              0	Xerneas
              0	Yveltal
              0	Zygarde
-20000000 No
-3 Noi
+
+
 
   	
 
