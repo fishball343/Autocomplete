@@ -169,7 +169,7 @@ class TrieTest(unittest.TestCase):
 		root=Trie()
 		wordlist=[]
 		for _ in range(2500):
-			weight = random.randint(1, 250)
+			weight = random.randint(1, 360)
 			RandomWord = ''.join(random.choice(string.ascii_lowercase) for _ in range(random.randint(3, 10)))
 			wordlist.append((RandomWord, weight))
 			root.insert(weight, RandomWord, RandomWord)
@@ -181,6 +181,31 @@ class TrieTest(unittest.TestCase):
 		self.assertEqual(root.topk(5, "b"), wordlist_prefix1)
 		self.assertEqual(root.topk(3, "ji"), wordlist_prefix2)
 		self.assertEqual(root.topk(5, "jon"), wordlist_prefix3)
+
+	def testPrefixIsShorterThanSuggestedWords(self):
+		"""Test on random input that autocomplete suggestions are longer than or of equal length of the prefix."""
+		root=Trie()
+		for _ in range(2500):
+			weight = random.randint(1, 250)
+			RandomWord = ''.join(random.choice(string.ascii_lowercase) for _ in range(random.randint(3, 20)))
+			root.insert(weight, RandomWord, RandomWord)
+		self.assertTrue(all(len(word[0]) >= 2 for word in root.topk(10, "br")))
+		self.assertTrue(all(len(word[0]) >= 3 for word in root.topk(10, "amw")))
+
+
+	def testPrefixBeginsAllSuggestedWords(self):
+		"""Test that the suggested words begin with the prefix."""
+		root=Trie()
+		for _ in range(2500):
+			weight = random.randint(1, 250)
+			RandomWord = ''.join(random.choice(string.ascii_lowercase) for _ in range(random.randint(3, 10)))
+			root.insert(weight, RandomWord, RandomWord)
+		self.assertTrue(all(word[0].startswith("br") for word in root.topk(10, "br")))
+
+
+
+
+
 
 if __name__ == "__main__":
     unittest.main()
