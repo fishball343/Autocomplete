@@ -28,7 +28,7 @@ class Trie:
         self.weight = -float('inf') 
         self.child_weight = -float('inf') 
 
-    def insert(self, weight, word, constant):
+    def insert(self, weight, word, fixedWord):
         """
         The function insert() adds a word and its respective weight to the 
         trie. It also updates the weights and the maximum weight of the 
@@ -43,10 +43,9 @@ class Trie:
         # Base case set the instance word_name and weight to be the values 
         # provided. Update the child weights accordingly.
         if len(word) == 0:
-            self.word_name = constant
+            self.word_name = fixedWord
             self.weight = max(self.weight, weight)
-            if (self.child_weight < self.weight):
-                self.child_weight = self.weight
+            self.child_weight = max(self.child_weight, self.weight)
             return
 
         # Key is the first character of the word. rest is the remaining 
@@ -56,18 +55,18 @@ class Trie:
 
         # Update the max child_weight of each node if the newly encountered 
         # word has a greater weight.
-        if (weight > self.child_weight):
+        if weight > self.child_weight:
             self.child_weight = weight
 
         # Recursively insert the rest of the word into the Trie. If the next 
         # character is not a current child, then create new node and add to 
         # the trie. 
-        if self.children.has_key(key):
-            self.children[key].insert(weight, rest, constant)
+        if key in self.children:
+            self.children[key].insert(weight, rest, fixedWord)
         else:
             node = Trie()
             self.children[key] = node
-            node.insert(weight, rest, constant)
+            node.insert(weight, rest, fixedWord)
 
     def find_subtrie(self, prefix):
         """
@@ -90,7 +89,7 @@ class Trie:
         # traverse to that child and recurse on that node. Otherwise, we will
         # return a NoneType to indicate that the prefix is not found in the
         # trie.
-        if (self.children.has_key(key)):
+        if key in self.children:
             subtrie = self.children[key]
             return subtrie.find_subtrie(rest)
 
@@ -122,7 +121,7 @@ class Trie:
         # If the subtrie is not None, this indicates that our prefix is valid. 
         if subtrie is not None:
             pq.put((-subtrie.child_weight, subtrie))
-            while(isVisited_K == False):
+            while not isVisited_K:
                 if pq.qsize() == 0:
                     return visited
 
@@ -154,7 +153,7 @@ def read(filename):
     with open(filename, 'r') as file:
          next(file)
          for line in file:
-            if (line.rstrip('\n')):
+            if line.rstrip('\n'):
                  weight=int(line.split(None, 1)[0])
                  word=str(line.split(None, 1)[1].strip())
                  root.insert(weight, word, word)
@@ -166,8 +165,8 @@ def printlist(suggestions):
     """Print the suggestions line by line to facilitate reading the results"""
     if len(suggestions) == 0:
         print("Prefix not found")
-    for i in range(len(suggestions)):
-        print str(i+1) + ": " + "weight: " + str(suggestions[i][1]) + "\t" + "word: " + suggestions[i][0]
+    for index, node in enumerate(suggestions):
+        print str(index+1) + ": " + "weight: " + str(node[1]) + "\t" + "word: " + suggestions[index][0]
 
 def main():
     word = str(sys.argv[1])
