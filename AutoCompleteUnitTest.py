@@ -172,8 +172,8 @@ class TrieTest(unittest.TestCase):
         weight and thus there is a chance that it may not make the top N 
         suggestion due to sorting issues."""
         random.seed(1)
-        root=Trie()
-        wordlist=[]
+        root = Trie()
+        wordlist = []
         for _ in xrange(2500):
             weight = random.randint(1, 500)
             RandomWord = ''.join(random.choice(string.ascii_lowercase) for _ in range(random.randint(3, 10)))
@@ -192,7 +192,7 @@ class TrieTest(unittest.TestCase):
         """Test on random input that autocomplete suggestions are longer than 
         or of equal length of the prefix."""
         random.seed(3)
-        root=Trie()
+        root = Trie()
         for _ in xrange(2500):
             weight = random.randint(1, 250)
             RandomWord = ''.join(random.choice(string.ascii_lowercase) for _ in range(random.randint(3, 20)))
@@ -203,7 +203,7 @@ class TrieTest(unittest.TestCase):
     def testPrefixBeginsAllSuggestedWords(self):
         """Test that the suggested words begin with the prefix."""
         random.seed(5)
-        root=Trie()
+        root = Trie()
         for _ in xrange(2500):
             weight = random.randint(1, 250)
             RandomWord = ''.join(random.choice(string.ascii_lowercase) for _ in range(random.randint(3, 10)))
