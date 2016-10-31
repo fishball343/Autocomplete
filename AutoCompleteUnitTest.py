@@ -174,7 +174,7 @@ class TrieTest(unittest.TestCase):
         random.seed(1)
         root = Trie()
         wordlist = []
-        for _ in xrange(2500):
+        for _ in range(2500):
             weight = random.randint(1, 500)
             RandomWord = ''.join(random.choice(string.ascii_lowercase) for _ in range(random.randint(3, 10)))
             wordlist.append((RandomWord, weight))
@@ -193,7 +193,7 @@ class TrieTest(unittest.TestCase):
         or of equal length of the prefix."""
         random.seed(3)
         root = Trie()
-        for _ in xrange(2500):
+        for _ in range(2500):
             weight = random.randint(1, 250)
             RandomWord = ''.join(random.choice(string.ascii_lowercase) for _ in range(random.randint(3, 20)))
             root.insert(weight, RandomWord, RandomWord)
@@ -204,7 +204,7 @@ class TrieTest(unittest.TestCase):
         """Test that the suggested words begin with the prefix."""
         random.seed(5)
         root = Trie()
-        for _ in xrange(2500):
+        for _ in range(2500):
             weight = random.randint(1, 250)
             RandomWord = ''.join(random.choice(string.ascii_lowercase) for _ in range(random.randint(3, 10)))
             root.insert(weight, RandomWord, RandomWord)
