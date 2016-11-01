@@ -164,9 +164,9 @@ def read(filename):
 def printlist(suggestions):
     """Print the suggestions line by line to facilitate reading the results"""
     if len(suggestions) == 0:
-        print("Prefix not found")
+        print "Prefix not found" 
     for index, node in enumerate(suggestions):
-        print(str(index+1) + ": " + "weight: " + str(node[1]) + "\t" + "word: " + suggestions[index][0])
+        print str(index+1) + ": " + "weight: " + str(node[1]) + "\t" + "word: " + suggestions[index][0]
 
 def main():
     word = str(sys.argv[1])
