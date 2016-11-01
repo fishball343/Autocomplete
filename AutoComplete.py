@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.0
 """
 The following code is my implementation of Autocomplete using a trie, a tree 
 data structure that efficiently allows you to look up terms based on their 
@@ -151,12 +151,12 @@ def read(filename):
     """
     root=Trie()
     with open(filename, 'r') as file:
-         next(file)
-         for line in file:
+        next(file)
+        for line in file:
             if line.rstrip('\n'):
-                 weight=int(line.split(None, 1)[0])
-                 word=str(line.split(None, 1)[1].strip())
-                 root.insert(weight, word, word)
+                weight=int(line.split(None, 1)[0])
+                word=str(line.split(None, 1)[1].strip())
+                root.insert(weight, word, word)
             else:
                 break
     return root
@@ -166,7 +166,7 @@ def printlist(suggestions):
     if len(suggestions) == 0:
         print("Prefix not found")
     for index, node in enumerate(suggestions):
-        print str(index+1) + ": " + "weight: " + str(node[1]) + "\t" + "word: " + suggestions[index][0]
+        print(str(index+1) + ": " + "weight: " + str(node[1]) + "\t" + "word: " + suggestions[index][0])
 
 def main():
     word = str(sys.argv[1])
