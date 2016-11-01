@@ -174,9 +174,9 @@ class TrieTest(unittest.TestCase):
         random.seed(1)
         root = Trie()
         wordlist = []
-        for _ in range(2500):
+        for _ in xrange(2500):
             weight = random.randint(1, 500)
-            RandomWord = ''.join(random.choice(string.ascii_lowercase) for _ in range(random.randint(3, 10)))
+            RandomWord = ''.join(random.choice(string.ascii_lowercase) for _ in xrange(random.randint(3, 10)))
             wordlist.append((RandomWord, weight))
             root.insert(weight, RandomWord, RandomWord)
 
@@ -193,9 +193,9 @@ class TrieTest(unittest.TestCase):
         or of equal length of the prefix."""
         random.seed(3)
         root = Trie()
-        for _ in range(2500):
+        for _ in xrange(2500):
             weight = random.randint(1, 250)
-            RandomWord = ''.join(random.choice(string.ascii_lowercase) for _ in range(random.randint(3, 20)))
+            RandomWord = ''.join(random.choice(string.ascii_lowercase) for _ in xrange(random.randint(3, 20)))
             root.insert(weight, RandomWord, RandomWord)
         self.assertTrue(all(len(word[0]) >= 2 for word in root.topk(10, "br")))
         self.assertTrue(all(len(word[0]) >= 3 for word in root.topk(10, "amw")))
@@ -204,9 +204,9 @@ class TrieTest(unittest.TestCase):
         """Test that the suggested words begin with the prefix."""
         random.seed(5)
         root = Trie()
-        for _ in range(2500):
+        for _ in xrange(2500):
             weight = random.randint(1, 250)
-            RandomWord = ''.join(random.choice(string.ascii_lowercase) for _ in range(random.randint(3, 10)))
+            RandomWord = ''.join(random.choice(string.ascii_lowercase) for _ in xrange(random.randint(3, 10)))
             root.insert(weight, RandomWord, RandomWord)
         self.assertTrue(all(word[0].startswith("br") for word in root.topk(10, "br")))
 
