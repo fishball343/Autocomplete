@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.0
+#!/usr/bin/env python
 """
 The following code is my implementation of Autocomplete using a trie, a tree 
 data structure that efficiently allows you to look up terms based on their 
